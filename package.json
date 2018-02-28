@@ -1,0 +1,27 @@
+{
+  "name": "cryptowatch-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coeurgan/cryptowatch-server.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coeurgan/cryptowatch-server/issues"
+  },
+  "homepage": "https://github.com/coeurgan/cryptowatch-server#readme",
+  "devDependencies": {
+    "nodemon": "^1.17.1"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^5.0.7"
+  }
+}
