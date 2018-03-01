@@ -44,7 +44,6 @@ exports.update = function(req, res) {
 
 exports.delete = function(req, res) {
 
-
   Crypto.remove({"code" : req.params.cryptoId} , function(err, crypto) {
     if (err)
       res.send(err);
