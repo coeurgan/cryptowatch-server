@@ -1,7 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-//CryptoSchema = require('../models/cryptoModel');
+
 Crypto = mongoose.model('Cryptos');
 
 exports.list = function(req, res) {
