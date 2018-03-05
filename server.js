@@ -1,13 +1,14 @@
 var express = require('express'),
   app = express(),
   port = process.env.PORT || 3000,
+  dbName =  process.env.CRYPTOWATCH_DB_NAME || "cryptowatch",
   mongoose = require('mongoose'),
   Crypto = require('./models/cryptoModel'), //created model loading here
   bodyParser = require('body-parser');
   
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/cryptowatch'); 
+mongoose.connect('mongodb://localhost/'+dbName); 
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
