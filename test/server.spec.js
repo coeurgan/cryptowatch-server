@@ -1,6 +1,8 @@
 'use strict';
-/*
+
 var mongoose = require('mongoose');
+var crypto = require('../models/cryptoModel');
+/*
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/cryptowatch'); 
 var model = require
@@ -12,6 +14,56 @@ let server = require('../server');
 let expect = chai.expect;
 
 chai.use(chaiHttp);
+
+beforeEach(function (done) {
+  function clearDB() {
+    //console.log("nettoyage de la base" + mongoose.connection.name);
+    for (var i in mongoose.connection.collections) {
+        //console.log("nettoyage de " + mongoose.connection.name + "/" + mongoose.connection.collections[i].name);
+        mongoose.connection.collections[i].remove({}, function(err) { 
+            //console.log('collection '+mongoose.connection.collections[i].name+' removed') 
+        });
+    }
+    return done();
+  }
+
+
+  if (mongoose.connection.readyState === 0) {
+    mongoose.connect(config.db.test, function (err) {
+      if (err) {
+        throw err;
+      }
+      return clearDB();
+    });
+  } else {
+    return clearDB();
+  }
+});
+
+beforeEach(function (done) {
+  function fillDB()
+  {
+     crypto.create(
+     [
+       {code:'BTC',
+        quantity: 1.025, 
+        target:300000
+        }
+     ], done);
+ }
+
+
+  if (mongoose.connection.readyState === 0) {
+    mongoose.connect(config.db.test, function (err) {
+      if (err) {
+        throw err;
+      }
+      return fillDB();
+    });
+  } else {
+    return fillDB();
+  }
+});
 
 describe('Crypto controller module', () => {
     

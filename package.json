@@ -4,11 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-<<<<<<< HEAD
-    "test": "SET PORT=2500 && nodemon --exec mocha --reporter spec",
-=======
-    "test": "mocha **/**.js",
->>>>>>> 47dec05d2fb9562a3d267ec64e7de0c9dcf5b384
+    "test": "SET PORT=2500 && set CRYPTOWATCH_DB_NAME=cryptowatch-test && nodemon --exec mocha --reporter spec",
     "start": "nodemon server.js"
   },
   "repository": {

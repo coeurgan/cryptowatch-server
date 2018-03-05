@@ -1,7 +1,7 @@
 var express = require('express'),
   app = express(),
   port = process.env.PORT || 3000,
-  dbName =  process.env.CRYPTOWATCH_DB_NAME || "cryptowatch",
+  dbName =  process.env.CRYPTOWATCH_DB_NAME.trim() || "cryptowatch",
   mongoose = require('mongoose'),
   Crypto = require('./models/cryptoModel'), //created model loading here
   bodyParser = require('body-parser');
