@@ -9,8 +9,7 @@ var controller = require('../controllers/cryptoController');
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let server = require('../server');
-let expect = chai.expect();
-let should = chai.should();
+let expect = chai.expect;
 
 chai.use(chaiHttp);
 
@@ -26,10 +25,9 @@ describe('Crypto controller module', () => {
         chai.request(server)
             .get('/cryptos')
             .end((err, res) => {
-                //expect(res.status).to.be(200);
-                res.should.have.status(200);
-                res.body.should.be.a('array');
-                res.body.length.should.be.eql(1);
+                expect(res.status).to.equal(200);
+                expect(res.body).to.be.a('array');
+                expect(res.body.length).to.equal(1);
                 
               done();
             });
@@ -39,10 +37,9 @@ describe('Crypto controller module', () => {
             chai.request(server)
                 .get('/cryptos/BTC')
                 .end((err, res) => {
-                    //expect(res.status).to.be(200);
-                    res.should.have.status(200);
-                    res.body.should.be.a('object');
-                    res.body.code.should.be.eql('BTC');
+                    expect(res.status).to.equal(200);
+                    expect(res.body).to.be.a('object');
+                    expect(res.body.code).to.equal('BTC');
                   done();
                 });
           });
