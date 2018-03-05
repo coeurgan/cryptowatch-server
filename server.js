@@ -2,7 +2,7 @@ var express = require('express'),
   app = express(),
   port = process.env.PORT || 3000,
   mongoose = require('mongoose'),
-  Task = require('./models/cryptoModel'), //created model loading here
+  Crypto = require('./models/cryptoModel'), //created model loading here
   bodyParser = require('body-parser');
   
 // mongoose instance connection url connection
@@ -24,3 +24,5 @@ app.use(function(req, res) {
 app.listen(port);
 
 console.log('Cryptowatch server started on : http://localhost:' + port);
+
+module.exports = app

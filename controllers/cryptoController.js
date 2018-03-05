@@ -1,18 +1,17 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-  Crypto = mongoose.model('Cryptos');
+//Crypto = require('../models/cryptoModel');
+Crypto = mongoose.model('Cryptos');
 
 exports.list = function(req, res) {
   Crypto.find({}, function(err, crypto) {
     if (err)
       res.send(err);
+    //console.log(crypto);
     res.json(crypto);
   });
 };
-
-
-
 
 exports.create = function(req, res) {
   var new_crypto = new Crypto(req.body);
@@ -23,7 +22,6 @@ exports.create = function(req, res) {
   });
 };
 
-
 exports.read = function(req, res) {
   Crypto.findOne({"code" : req.params.cryptoId}, function(err, crypto) {
     if (err)
@@ -31,7 +29,6 @@ exports.read = function(req, res) {
     res.json(crypto);
   });
 };
-
 
 exports.update = function(req, res) {
   Crypto.findOneAndUpdate({"code" : req.params.cryptoId}, req.body, {new: true}, function(err, crypto) {
@@ -41,9 +38,7 @@ exports.update = function(req, res) {
   });
 };
 
-
 exports.delete = function(req, res) {
-
   Crypto.remove({"code" : req.params.cryptoId} , function(err, crypto) {
     if (err)
       res.send(err);
