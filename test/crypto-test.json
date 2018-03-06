@@ -1,0 +1,12 @@
+[
+    {
+      "code": "BTC",
+      "quantity" : "0.42",
+      "target" : "300000"
+    },
+        {
+      "code": "LTC",
+      "quantity" : "1.48",
+      "target" : "40000"
+    }
+]

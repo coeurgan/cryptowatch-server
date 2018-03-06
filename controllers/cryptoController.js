@@ -45,3 +45,4 @@ exports.delete = function(req, res) {
     res.json({ message: 'crypto successfully deleted' });
   });
 };
+
