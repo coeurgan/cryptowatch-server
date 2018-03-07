@@ -4,10 +4,12 @@
 var mongoose = require('mongoose'),
 
 Crypto = mongoose.model('Cryptos');
+ var service = require('../services/cryptoService');
+
 
 exports.list = function(req, response) {
   Crypto.find({}, function(err, cryptos) {
-    var service = require('../services/cryptoService');
+   
     if (err)
       response.send(err);
     //var completedCryptos = [];
@@ -30,18 +32,25 @@ exports.create = function(req, res) {
   });
 };
 
-exports.read = function(req, res) {
-  Crypto.findOne({"code" : req.params.cryptoId}, function(err, crypto) {
-    if (err)
-      res.send(err);
-    res.json(crypto);
-  });
+exports.read = function(req, response) {
+    Crypto.findOne({"code" : req.params.cryptoId}, function(err, crypto) {
+        if (err)
+            response.send(err);
+        var cryptos = [];
+        cryptos.push(crypto)
+        service.complete(cryptos, function(completedCryptos) {
+            console.log("completedCryptos : " + completedCryptos);
+            response.json(completedCryptos[0]);
+        });
+    });
 };
 
 exports.update = function(req, res) {
   Crypto.findOneAndUpdate({"code" : req.params.cryptoId}, req.body, {new: true}, function(err, crypto) {
     if (err)
       res.send(err);
+    
+    
     res.json(crypto);
   });
 };
