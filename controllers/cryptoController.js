@@ -1,17 +1,25 @@
 'use strict';
 
+
 var mongoose = require('mongoose'),
 
 Crypto = mongoose.model('Cryptos');
 
-exports.list = function(req, res) {
-  Crypto.find({}, function(err, crypto) {
+exports.list = function(req, response) {
+  Crypto.find({}, function(err, cryptos) {
+    var service = require('../services/cryptoService');
     if (err)
-      res.send(err);
-    //console.log(crypto);
-    res.json(crypto);
+      response.send(err);
+    //var completedCryptos = [];
+
+    service.complete(cryptos, function(completedCryptos) {
+        console.log("completedCryptos : " + completedCryptos);
+        response.json(completedCryptos);
+    });
   });
 };
+
+
 
 exports.create = function(req, res) {
   var new_crypto = new Crypto(req.body);

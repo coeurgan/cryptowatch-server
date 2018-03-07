@@ -10,9 +10,15 @@ var express = require('express'),
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/'+dbName.trim()); 
 
+var allowCrossDomain = function(req, res, next) {
+    res.header('access-control-allow-origin', '*');
+    next();
+}
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(allowCrossDomain);
 
 
 var routes = require('./routes/cryptoRoutes'); //importing route

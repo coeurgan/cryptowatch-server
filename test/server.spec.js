@@ -46,7 +46,7 @@ afterEach(function() {
             expect(res.status).to.equal(200);
             expect(res.body).to.be.a('array');
             expect(res.body.length).to.equal(2);
-            
+            expect(res.headers['access-control-allow-origin']).to.equal('*');
           done();
         });
     });
@@ -60,6 +60,10 @@ afterEach(function() {
             expect(res.body.code).to.equal('BTC');
             expect(res.body.target).to.equal(300000);
             expect(res.body.quantity).to.equal(0.42);
+            expect(res.body.price).to.equal(12345);
+            expect(res.body.marketcap).to.equal(123456789);
+            console.log(res.headers);
+            expect(res.headers['access-control-allow-origin']).to.equal('*');
           done();
         });
     });
@@ -72,6 +76,9 @@ afterEach(function() {
             expect(res.body.code).to.equal('LTC');
             expect(res.body.target).to.equal(40000);
             expect(res.body.quantity).to.equal(1.48);
+            expect(res.body.price).to.equal(123.45);
+            expect(res.body.marketcap).to.equal(1234567);
+            expect(res.headers['access-control-allow-origin']).to.equal('*');
           done();
         });
     });
