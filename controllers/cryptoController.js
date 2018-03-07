@@ -15,7 +15,7 @@ exports.list = function(req, response) {
     //var completedCryptos = [];
 
     service.complete(cryptos, function(completedCryptos) {
-        console.log("completedCryptos : " + completedCryptos);
+        //console.log("completedCryptos : " + completedCryptos);
         response.json(completedCryptos);
     });
   });
@@ -39,7 +39,7 @@ exports.read = function(req, response) {
         var cryptos = [];
         cryptos.push(crypto)
         service.complete(cryptos, function(completedCryptos) {
-            console.log("completedCryptos : " + completedCryptos);
+            //console.log("completedCryptos : " + completedCryptos);
             response.json(completedCryptos[0]);
         });
     });
