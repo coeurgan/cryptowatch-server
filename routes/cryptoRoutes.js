@@ -5,7 +5,8 @@ module.exports = function(app) {
   // todoList Routes
   app.route('/cryptos')
     .get(controller.list)
-    .post(controller.create);
+    .post(controller.create)
+    .options(controller.optionResponse);
 
 
   app.route('/cryptos/:cryptoId')

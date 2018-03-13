@@ -15,16 +15,32 @@ var allowCrossDomain = function(req, res, next) {
     next();
 }
 
+var allowMethods = function(req, res, next) {
+    res.header('access-control-allow-methods', 'GET, POST, PUT');
+    next();
+}
+
+var allowRequestHeaders = function(req, res, next) {
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    //res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+    next();
+}
+
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(allowCrossDomain);
+app.use(allowMethods);
+app.use(allowRequestHeaders);
 
 
 var routes = require('./routes/cryptoRoutes'); //importing route
 routes(app); //register the route
 
 app.use(function(req, res) {
+    console.log("route non trouvée");
+    console.log(req.Headers);
   res.status(404).send({url: req.originalUrl + ' not found'})
 });
 

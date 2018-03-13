@@ -24,6 +24,7 @@ exports.list = function(req, response) {
 
 
 exports.create = function(req, res) {
+    console.log("exports.create");
   var new_crypto = new Crypto(req.body);
   new_crypto.save(function(err, crypto) {
     if (err)
@@ -61,5 +62,11 @@ exports.delete = function(req, res) {
       res.send(err);
     res.json({ message: 'crypto successfully deleted' });
   });
+};
+
+exports.optionResponse = function(req,res) {
+    var message = 'OPTION REQUEST RECEIVED';
+    console.log(message);
+    res.sendStatus(200);
 };
 
