@@ -10,6 +10,7 @@ module.exports = function(app) {
 
 
   app.route('/cryptos/:cryptoId')
+    .options(controller.optionResponse)
     .get(controller.read)
     .put(controller.update)
     .delete(controller.delete);

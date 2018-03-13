@@ -16,13 +16,12 @@ var allowCrossDomain = function(req, res, next) {
 }
 
 var allowMethods = function(req, res, next) {
-    res.header('access-control-allow-methods', 'GET, POST, PUT');
+    res.header('access-control-allow-methods', 'GET, POST, PUT, DELETE');
     next();
 }
 
 var allowRequestHeaders = function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Content-Type');
-    //res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
     next();
 }
 
